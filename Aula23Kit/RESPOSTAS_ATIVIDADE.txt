@@ -1,0 +1,19 @@
+AULA 23 - STARLOG-ZERO: OPERACAO ENIGMA
+Autor: Thiago Macedo Lunardon
+RA: 25102653-2
+
+ETAPA 1 - DIAGNOSTICO FORENSE
+O evento do botao na classe TelaCaoticaLegada mistura coleta de dados da interface, validacao, conversao da chave, criptografia, calculo de checksum e armazenamento de transmissoes. Isso viola o principio da responsabilidade unica (SRP) e acopla regras de negocio ao Swing, dificultando testes isolados, manutencao e reutilizacao.
+
+ETAPA 2 - MODEL
+Implementado em src/br/com/starlog/model/CriptoMensagem.java: validacoes Fail-Fast, normalizacao de texto, cifra de Cesar circular e checksum.
+
+ETAPA 3 - CONTROLLER
+Implementado em src/br/com/starlog/controller/TransmissaoController.java: conversao da chave, tratamento de erro, construcao de pacote e historico em memoria.
+
+ETAPA 4 - TESTES
+Suite oficial CriptoMensagemTest.java: 8 testes aprovados, 0 falhas.
+
+Para executar os testes (com JDK instalado), no diretorio Aula23Kit:
+Windows: javac -encoding UTF-8 -cp "lib/junit-platform-console-standalone-1.10.2.jar" -d bin src/br/com/starlog/model/CriptoMensagem.java src/br/com/starlog/controller/TransmissaoController.java test/br/com/starlog/test/CriptoMensagemTest.java
+Windows: java -jar lib/junit-platform-console-standalone-1.10.2.jar execute --class-path bin --select-class br.com.starlog.test.CriptoMensagemTest
